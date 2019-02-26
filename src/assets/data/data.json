@@ -1,0 +1,16 @@
+{
+    "perguntas": [
+        {
+            "codigo": 506,
+            "pergunta": " Como configurar a tributação de Notas Fiscais de Serviço (NFSe) por ramo de serviço?"
+        },
+        {
+            "codigo": 597,
+            "pergunta": "Como emitir Nota Fiscal de Serviço (NFSe) pelo SIS?"
+        },
+        {
+            "codigo": 82,
+            "pergunta": "Como configurar emissão Nota Fiscal de Serviço (NFSe) pelo SIS?"
+        }
+    ]
+}

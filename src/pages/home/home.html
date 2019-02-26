@@ -1,17 +1,28 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Início</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+  <h2 style="text-align: center">Bem vindo ao</h2>
+  <div style="text-align: center">
+    <img src="assets/imgs/logoSIS.jpg" />
+  </div>
+  <h2 style="text-align: center">
+    Wiki
+  </h2>
+  <p style="text-align: center">
+    Abaixo você pode visualizar suas dúvidas e respostas relativas
+    <br />ao SIS Controladoras!
   </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <div style="text-align: center">
+    <button ion-button round color="dark" (click)="launchInterstitial()">Abrir Interstitial</button>
+  </div>
+
+  <ion-card *ngFor="let pergunta of perguntas;let i = index;" (click)="openAnswer(i)">
+    <ion-card-header>
+      {{ pergunta.pergunta}}
+    </ion-card-header>
+  </ion-card>
 </ion-content>
