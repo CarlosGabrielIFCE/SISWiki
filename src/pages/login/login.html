@@ -10,8 +10,17 @@
       </ion-item>
     </ion-list>
   </ion-card>
+
+  <ion-card>
+      <ion-list>
+        <ion-item>
+          <ion-input type="text" placeholder="Código de Verificação" [(ngModel)]="cdVerif"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-card>
   <div style="text-align: center">
     <button ion-button round color="light" (click)="login()">Entrar</button>
   </div>
-  <p style="text-align: center"><button ion-button clear outline color="primary" (click)="exitApp()">Encerrar o APP</button></p>
+  <p style="text-align: center"><button ion-button round color="light" (click)="cadastrarUsuario()">Cadastre-se!</button></p>  
+  <p style="text-align: center"><button ion-button round color="light" (click)="exitApp()">Encerrar o APP</button></p>
 </ion-content>

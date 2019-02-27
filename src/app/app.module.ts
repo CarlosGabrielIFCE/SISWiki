@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ResultadoDetailPage } from '../pages/resultado-detail/resultado-detail';
 import { LoginPage } from '../pages/login/login';
+import { CadastrarUsuarioPage } from '../pages/cadastrar-usuario/cadastrar-usuario';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -18,6 +19,7 @@ import { SQLite } from '@ionic-native/sqlite';
 import { PopoverComponent } from '../components/popover/popover';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { LocalStorageProvider } from '../providers/local-storage/local-storage';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,12 @@ import { LocalStorageProvider } from '../providers/local-storage/local-storage';
     TabsPage,
     ResultadoDetailPage,
     PopoverComponent,
-    LoginPage
+    LoginPage,
+    CadastrarUsuarioPage
   ],
   imports: [
     HttpClientModule,
+    PipesModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -44,7 +48,8 @@ import { LocalStorageProvider } from '../providers/local-storage/local-storage';
     TabsPage,
     ResultadoDetailPage,
     PopoverComponent,
-    LoginPage
+    LoginPage,
+    CadastrarUsuarioPage
   ],
   providers: [
     StatusBar,

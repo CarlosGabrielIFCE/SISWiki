@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, Platform } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { ResultadoDetailPage } from '../resultado-detail/resultado-detail';
 import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 import { StorageProvider } from '../../providers/storage/storage';
 import { LoginPage } from '../login/login';
+import { LocalStorageProvider } from '../../providers/local-storage/local-storage';
 
 @Component({
   selector: 'page-home',
@@ -17,19 +18,20 @@ export class HomePage {
     public http: HttpClient,
     public admob: AdMobFree,
     public storage: StorageProvider,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    public localStorage: LocalStorageProvider,
+    public platform: Platform) {
     this.showBanner();
-    // this.http.get("http://localhost:3000/perguntas")
-    //   .subscribe((data) => {
-    //     this.perguntas = data;
-    //     console.log(this.perguntas);
-    //   })
+  }
+
+  ionViewDidEnter() {
+    this.perguntas = this.localStorage.getPerguntas();
   }
 
   deslogar() {
     this.alertCtrl.create({
       title: "Aviso",
-      subTitle: "Deseja deslogar do SIS Wiki? Todas as perguntas serão perdidas",
+      subTitle: "Deseja realmente sair do SIS Wiki?",
       buttons: [{
         text: "Não",
         handler: () => {
@@ -38,8 +40,7 @@ export class HomePage {
       }, {
         text: "Sim",
         handler: () => {
-          this.navCtrl.setRoot(LoginPage);
-          this.storage.Deslogar();
+          this.platform.exitApp();
         }
       }]
     }).present();
@@ -54,9 +55,9 @@ export class HomePage {
 
   showBanner() {
     let bannerConfig: AdMobFreeBannerConfig = {
-      isTesting: true, // Remove in production
+      //isTesting: true, // Remove in production
       autoShow: true,
-      //id: "ca-app-pub-8722097021252324/6908364338"
+      id: "ca-app-pub-8722097021252324/6908364338"
     };
 
     this.admob.banner.config(bannerConfig);
@@ -70,9 +71,9 @@ export class HomePage {
   launchInterstitial() {
 
     let interstitialConfig: AdMobFreeInterstitialConfig = {
-      isTesting: true, // Remove in production
+      //isTesting: true, // Remove in production
       autoShow: true,
-      //id: "ca-app-pub-8722097021252324/4002821784"
+      id: "ca-app-pub-8722097021252324/4002821784"
     };
 
     this.admob.interstitial.config(interstitialConfig);

@@ -7,6 +7,7 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { StorageProvider } from '../../providers/storage/storage';
 import { LocalStorageProvider } from '../../providers/local-storage/local-storage';
 import { TabsPage } from '../tabs/tabs';
+import { CadastrarUsuarioPage } from '../cadastrar-usuario/cadastrar-usuario';
 
 
 @IonicPage()
@@ -15,6 +16,7 @@ import { TabsPage } from '../tabs/tabs';
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  cdVerif: string = "";
   email: string = "";
   usuario: any = {};
   perguntas: any = [];
@@ -51,7 +53,7 @@ export class LoginPage {
             if (JSON.stringify(this.usuario.logado) && JSON.stringify(this.usuario.logado == 1)) {
               this.serviceProv.setUsuario(this.usuario);
               this.serviceProv.setPerguntas(this.perguntas);
-              this.navCtrl.setRoot(TabsPage, {
+              this.navCtrl.push(TabsPage, {
                 usuario: this.usuario,
               });
             }
@@ -63,7 +65,10 @@ export class LoginPage {
           }
         })
       })
+  }
 
+  cadastrarUsuario() {
+    this.navCtrl.push(CadastrarUsuarioPage);
   }
 
   login() {
@@ -73,8 +78,8 @@ export class LoginPage {
       });
       alert.present();
     } else {
-      this.serviceProv.setUsuario(JSON.stringify(this.usuario));
-      this.navCtrl.setRoot(TabsPage);
+      //this.serviceProv.setUsuario(JSON.stringify(this.usuario));
+      this.navCtrl.push(TabsPage);
     }
   }
 
