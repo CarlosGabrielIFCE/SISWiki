@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { ResultadoDetailPage } from '../resultado-detail/resultado-detail';
+import { StorageProvider } from '../../providers/storage/storage';
 
 @Component({
   selector: 'page-about',
@@ -10,7 +11,7 @@ import { ResultadoDetailPage } from '../resultado-detail/resultado-detail';
 export class AboutPage {
   textoBusca: string;
   perguntas: any = [];
-  constructor(public navCtrl: NavController, public http: HttpClient, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public http: HttpClient, public loadingCtrl: LoadingController, public storage: StorageProvider) {
 
   }
 
@@ -21,7 +22,7 @@ export class AboutPage {
     .subscribe((data) => {
       loading.dismiss();
       this.perguntas = data;
-      console.log(this.perguntas);
+      this.storage.SetPerguntasAtivas(JSON.stringify(this.perguntas));
     })
   }
 

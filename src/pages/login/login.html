@@ -1,0 +1,17 @@
+<ion-content padding style="background: #168D9D">
+  <p style="text-align: center">
+    <img src="assets/imgs/logoSIS.jpg" />
+  </p>
+
+  <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-input type="text" placeholder="E-mail" [(ngModel)]="email"></ion-input>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <div style="text-align: center">
+    <button ion-button round color="light" (click)="login()">Entrar</button>
+  </div>
+  <p style="text-align: center"><button ion-button clear outline color="primary" (click)="exitApp()">Encerrar o APP</button></p>
+</ion-content>

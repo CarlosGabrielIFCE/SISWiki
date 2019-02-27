@@ -1,6 +1,9 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Início</ion-title>
+    <ion-buttons end>
+      <button ion-button outline clear color="dark" (click)="deslogar()">Sair</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -16,10 +19,6 @@
     Abaixo você pode visualizar suas dúvidas e respostas relativas
     <br />ao SIS Controladoras!
   </p>
-  <div style="text-align: center">
-    <button ion-button round color="dark" (click)="launchInterstitial()">Abrir Interstitial</button>
-  </div>
-
   <ion-card *ngFor="let pergunta of perguntas;let i = index;" (click)="openAnswer(i)">
     <ion-card-header>
       {{ pergunta.pergunta}}

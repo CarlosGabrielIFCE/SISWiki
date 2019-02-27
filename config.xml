@@ -84,4 +84,5 @@
     <plugin name="cordova-plugin-admob-free" spec="0.20.0">
         <variable name="ADMOB_APP_ID" value="&lt;ca-app-pub-8722097021252324~1863867312&gt;" />
     </plugin>
+    <plugin name="cordova-sqlite-storage" spec="3.1.0" />
 </widget>
