@@ -24,7 +24,7 @@ export class ResultadoDetailPage {
     console.log(this.codigo);
 
     var post = {
-      "cdPergunta": 633,
+      "cdPergunta": this.codigo,
     }
     let loading = this.loadingCtrl.create();
     loading.present();

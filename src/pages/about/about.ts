@@ -21,17 +21,15 @@ export class AboutPage {
   }
 
   buscarWiki() {
-    console.log(this.textoBusca);
     var post = {
-      "textoBusca": this.textoBusca,
+      "textoBusca" : this.textoBusca,
     }
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.http.post("http://sisdedetizadora.com.br/pre/seam/resource/rest/baseConhecimentoMobile/buscarBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
+    this.http.post("https://www.sisdedetizadora.com.br/pre/seam/resource/rest/baseConhecimentoMobile/buscarBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
       .subscribe((data) => {
         console.log(data);
-        //this.resposta = data["resposta"];
-        //this.perguntas = data["perguntas"];
+        this.perguntas = JSON.parse(data["sucesso"]);
       })
     loading.dismiss();
   }
