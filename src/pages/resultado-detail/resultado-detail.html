@@ -1,13 +1,6 @@
-<!--
-  Generated template for the ResultadoDetailPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-
 <ion-header>
   <ion-navbar>
-    <ion-title>Pergunta N°</ion-title>
+    <ion-title>Detalhes</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -20,6 +13,8 @@
 <ion-content #popoverContent padding class="popover-page">
   <div #popoverText class="text-to-change">
     <h2>{{pergunta}}</h2>
-    <div [innerHTML]="resposta | safe:'html'"></div>
+    <div class="teste">
+      <div [innerHTML]="resposta | safe:'html'"></div>
+    </div>
   </div>
 </ion-content>

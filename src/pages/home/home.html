@@ -1,27 +1,36 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Início</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-title>
+      Busca
+    </ion-title>
     <ion-buttons end>
-      <button ion-button outline clear color="dark" (click)="deslogar()">Sair</button>
+      <button ion-button clear color="dark" (click)="deslogar()">Sair</button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2 style="text-align: center">Bem vindo ao</h2>
   <div style="text-align: center">
     <img src="assets/imgs/logoSIS.jpg" />
   </div>
   <h2 style="text-align: center">
-    Wiki
+    Buscar no SIS Wiki
   </h2>
-  <p style="text-align: center">
-    Abaixo você pode visualizar suas dúvidas e respostas relativas
-    <br />ao SIS Controladoras!
-  </p>
-  <ion-card *ngFor="let pergunta of perguntas;let i = index;" (click)="openAnswer(i)">
+  <ion-searchbar placeholder="Digite aqui sua pesquisa" [(ngModel)]="textoBusca"></ion-searchbar>
+  <div style="text-align: center">
+    <button ion-button color="#168D9D" round (click)="buscarWiki()">Buscar</button>
+  </div>
+
+  <ion-card *ngFor="let pergunta of perguntas;let i = index" (click)="openAnswer(i)">
     <ion-card-header>
-      {{ pergunta.pergunta}}
+      {{ pergunta.pergunta }}
+    </ion-card-header>
+  </ion-card>
+
+  <h2 style="text-align: center">Histórico</h2>
+  <ion-card *ngFor="let pergunta of perguntasSalvas;let i = index" (click)="refazerBusca(i)">
+    <ion-card-header>
+      {{ pergunta }}
     </ion-card-header>
   </ion-card>
 </ion-content>

@@ -32,18 +32,18 @@ export class CadastrarUsuarioPage {
 
   salvarNovoUsuario() {
     var post = {
-      "nome": (this.user.nome != undefined) ? this.user.nome : "",
-      "email": (this.user.email != undefined) ? this.user.email : "",
-      "dddFixo": (this.user.dddFixo != undefined) ? this.user.dddFixo : "",
-      "telefoneFixo": (this.user.telefoneFixo != undefined) ? this.user.telefoneFixo : "",
-      "dddCelular": (this.user.dddCelular != undefined) ? this.user.dddCelular : "",
-      "telefoneCelular": (this.user.telefoneCelular != undefined) ? this.user.telefoneCelular : "",
-      "cpf": (this.user.Cpf != undefined) ? this.user.Cpf : "",
-      "cnpj": (this.user.Cpnj != undefined) ? this.user.Cpnj : ""
+      "nome": this.user.nmUsuario,
+      "email": this.user.email,
+      "dddFixo": this.user.dddFixo,
+      "telefoneFixo": this.user.telefoneFixo,
+      "dddCelular": this.user.dddCelular,
+      "telefoneCelular": this.user.telefoneCelular,
+      "cpf": this.user.Cpf,
+      "cnpj": this.user.Cnpj
     }
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.http.post("http://sisdedetizadora.com.br/pre/seam/resource/rest/baseConhecimentoMobile/cadastrarUsoBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
+    this.http.post("http://www.sisdedetizadora.com.br/pre/seam/resource/rest/baseConhecimentoMobile/cadastrarUsoBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
       .subscribe((data) => {
         this.alertCtrl.create({title: "Aviso", subTitle: data["retorno"], buttons: ["OK"]}).present();
       })

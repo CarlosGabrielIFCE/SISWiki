@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MyApp</name>
-    <description>An awesome Ionic/Cordova app.</description>
+<widget id="com.siscontroladoras.sisWiki" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>SIS Wiki</name>
+    <description>Tire suas Dúvidas sobre o SIS Aqui!</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content src="index.html" />
     <access origin="*" />
@@ -82,8 +82,8 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.11" />
     <plugin name="cordova-sqlite-storage" spec="3.1.0" />
-    <plugin name="cordova-plugin-admob-free" spec="^0.20.0">
-        <variable name="ADMOB_APP_ID" value="&lt;ca-app-pub-8722097021252324~1863867312&gt;" />
+    <plugin name="cordova-plugin-admobpro" spec="2.37.2">
+        <variable name="PLAY_SERVICES_VERSION" value="16.0.0" />
     </plugin>
-    <engine name="android" spec="8.0.0" />
+    <engine name="android" spec="7.1.4" />
 </widget>

@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { StorageProvider } from '../../providers/storage/storage';
 import { LocalStorageProvider } from '../../providers/local-storage/local-storage';
-import { TabsPage } from '../tabs/tabs';
+import { HomePage } from '../home/home'
 import { CadastrarUsuarioPage } from '../cadastrar-usuario/cadastrar-usuario';
 
 
@@ -18,6 +18,7 @@ import { CadastrarUsuarioPage } from '../cadastrar-usuario/cadastrar-usuario';
 export class LoginPage {
   cdVerif: string = "";
   email: string = "";
+  senha: string = "";
   usuario: any = {};
   perguntas: any = [];
 
@@ -49,11 +50,12 @@ export class LoginPage {
         .then((result) => {
           if (result.rows.length == 1) {
             this.usuario = JSON.parse(result.rows.item(0).usuario);
+            console.log(this.usuario);
             this.perguntas = JSON.parse(result.rows.item(0).perguntas);
             if (JSON.stringify(this.usuario.logado) && JSON.stringify(this.usuario.logado == 1)) {
               this.serviceProv.setUsuario(this.usuario);
               this.serviceProv.setPerguntas(this.perguntas);
-              this.navCtrl.push(TabsPage, {
+              this.navCtrl.push(HomePage, {
                 usuario: this.usuario,
               });
             }
@@ -72,14 +74,14 @@ export class LoginPage {
   }
 
   login() {
-    if (this.email == "") {
+    if (this.email == "" || this.senha == "") {
       let alert = this.alertCtrl.create({
-        title: "Campo Vazio", subTitle: "Preencha o campo de Email!", buttons: ["OK"]
+        title: "Campo Vazio", subTitle: "Preencha os campos necessários para fazer o Login!", buttons: ["OK"]
       });
       alert.present();
     } else {
       //this.serviceProv.setUsuario(JSON.stringify(this.usuario));
-      this.navCtrl.push(TabsPage);
+      this.navCtrl.push(HomePage);
     }
   }
 

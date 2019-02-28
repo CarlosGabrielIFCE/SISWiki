@@ -3,10 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
 import { ResultadoDetailPage } from '../pages/resultado-detail/resultado-detail';
 import { LoginPage } from '../pages/login/login';
 import { CadastrarUsuarioPage } from '../pages/cadastrar-usuario/cadastrar-usuario';
@@ -17,17 +14,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { StorageProvider } from '../providers/storage/storage';
 import { SQLite } from '@ionic-native/sqlite';
 import { PopoverComponent } from '../components/popover/popover';
-import { AdMobFree } from '@ionic-native/admob-free';
+import { AdMobPro } from '@ionic-native/admob-pro';
 import { LocalStorageProvider } from '../providers/local-storage/local-storage';
 import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
-    TabsPage,
     ResultadoDetailPage,
     PopoverComponent,
     LoginPage,
@@ -42,10 +36,7 @@ import { PipesModule } from '../pipes/pipes.module';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
-    TabsPage,
     ResultadoDetailPage,
     PopoverComponent,
     LoginPage,
@@ -54,9 +45,9 @@ import { PipesModule } from '../pipes/pipes.module';
   providers: [
     StatusBar,
     SplashScreen,
-    AdMobFree,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StorageProvider,
+    AdMobPro,
     SQLite,
     LocalStorageProvider
   ]
