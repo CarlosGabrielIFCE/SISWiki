@@ -9,28 +9,32 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding >
   <div style="text-align: center">
-    <img src="assets/imgs/logoSIS.jpg" />
+    <img src="assets/imgs/logo_universidadedaspragas.png" />
+    <p>Em parceria com <i>SIS Controladoras</i></p>
+    <p>Desenvolvido por <i>SUCH a Software</i></p>
   </div>
   <h2 style="text-align: center">
-    Buscar no SIS Wiki
+    Buscar no Wiki Pragas
   </h2>
   <ion-searchbar placeholder="Digite aqui sua pesquisa" [(ngModel)]="textoBusca"></ion-searchbar>
   <div style="text-align: center">
-    <button ion-button color="#168D9D" round (click)="buscarWiki()">Buscar</button>
+    <button ion-button round color="unipragas2" (click)="buscarWiki()">Buscar</button>
   </div>
 
   <ion-card *ngFor="let pergunta of perguntas;let i = index" (click)="openAnswer(i)">
-    <ion-card-header>
+    <ion-card-header style="background-color: #d8d8d8">
       {{ pergunta.pergunta }}
     </ion-card-header>
   </ion-card>
 
   <h2 style="text-align: center">Histórico</h2>
   <ion-card *ngFor="let pergunta of perguntasSalvas;let i = index" (click)="refazerBusca(i)">
-    <ion-card-header>
-      {{ pergunta }}
-    </ion-card-header>
+    <div style="text-align: center">
+      <ion-card-header style="background-color: #d8d8d8">
+        {{ pergunta }}
+      </ion-card-header>
+    </div>
   </ion-card>
 </ion-content>

@@ -45,6 +45,7 @@ export class CadastrarUsuarioPage {
     loading.present();
     this.http.post("http://www.sisdedetizadora.com.br/pre/seam/resource/rest/baseConhecimentoMobile/cadastrarUsoBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
       .subscribe((data) => {
+        console.log(data["retorno"]);
         this.alertCtrl.create({title: "Aviso", subTitle: data["retorno"], buttons: ["OK"]}).present();
       })
     loading.dismiss();

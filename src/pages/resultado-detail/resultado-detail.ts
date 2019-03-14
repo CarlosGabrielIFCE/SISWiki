@@ -22,7 +22,6 @@ export class ResultadoDetailPage {
               public loadingCtrl: LoadingController) {
     this.codigo = this.navParams.get('codigo');
     console.log(this.codigo);
-
     var post = {
       "cdPergunta": this.codigo,
     }

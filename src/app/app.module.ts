@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { ResultadoDetailPage } from '../pages/resultado-detail/resultado-detail';
 import { LoginPage } from '../pages/login/login';
 import { CadastrarUsuarioPage } from '../pages/cadastrar-usuario/cadastrar-usuario';
+import { RespostaSalvaPage } from '../pages/resposta-salva/resposta-salva'
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,6 +18,7 @@ import { PopoverComponent } from '../components/popover/popover';
 import { AdMobPro } from '@ionic-native/admob-pro';
 import { LocalStorageProvider } from '../providers/local-storage/local-storage';
 import { PipesModule } from '../pipes/pipes.module';
+import { Mask } from '../directives/mask/mask';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { PipesModule } from '../pipes/pipes.module';
     ResultadoDetailPage,
     PopoverComponent,
     LoginPage,
-    CadastrarUsuarioPage
+    CadastrarUsuarioPage,
+    RespostaSalvaPage,
+    Mask
   ],
   imports: [
     HttpClientModule,
@@ -40,7 +44,8 @@ import { PipesModule } from '../pipes/pipes.module';
     ResultadoDetailPage,
     PopoverComponent,
     LoginPage,
-    CadastrarUsuarioPage
+    CadastrarUsuarioPage,
+    RespostaSalvaPage
   ],
   providers: [
     StatusBar,

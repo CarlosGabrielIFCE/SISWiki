@@ -13,6 +13,7 @@ import { AdMobPro } from '@ionic-native/admob-pro';
 export class HomePage {
   perguntas: any = [];
   perguntasSalvas: any = [];
+  cont: number = 0;
   textoBusca: string = ""
   constructor(public navCtrl: NavController,
     public http: HttpClient,
@@ -29,15 +30,15 @@ export class HomePage {
       };
 
       this.admob.createBanner({
-        adId: admobid.banner,
-        //isTesting: true,
+        //adId: admobid.banner,
+        isTesting: true,
         autoShow: true,
         position: this.admob.AD_POSITION.BOTTOM_CENTER
       })
 
       this.admob.prepareInterstitial({
-        adId: admobid.interstitial,
-        //isTesting: true,
+        //adId: admobid.interstitial,
+        isTesting: true,
         autoShow: false
       })
     })
@@ -91,7 +92,7 @@ export class HomePage {
         }
         console.log(this.perguntas);
         console.log(this.perguntasSalvas);
-        this.storage.SetPerguntasAtivas(JSON.stringify(this.perguntasSalvas));
+        //this.storage.SetPerguntasAtivas(JSON.stringify(this.perguntasSalvas));
       })
     loading.dismiss();
   }
@@ -107,11 +108,24 @@ export class HomePage {
     })
   }
 
-  refazerBusca(index) {
-    this.admob.showInterstitial();
-    this.navCtrl.push(ResultadoDetailPage, {
-      codigo: this.perguntasSalvas[index].codigo
-    })
+  refazerBusca() {
+    var post = {
+      "textoBusca" : this.textoBusca,
+    }
+    let loading = this.loadingCtrl.create();
+    loading.present();
+    this.http.post("https://www.sisdedetizadora.com.br/pre/seam/resource/rest/baseConhecimentoMobile/buscarBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
+      .subscribe((data) => {
+        if (data["sucesso"].length == 0) {
+          this.alertCtrl.create({title: "Aviso", subTitle: "Nenhuma resposta encontrada", buttons: ["OK"]}).present();
+        }
+        this.perguntas.length = data["sucesso"].length;
+        for (let i = 0;i < this.perguntas.length;i++){
+          this.perguntas[i] = JSON.parse(data["sucesso"][i]);
+        }
+        //this.storage.SetPerguntasAtivas(JSON.stringify(this.perguntasSalvas));
+      })
+    loading.dismiss();
   }
 
 }

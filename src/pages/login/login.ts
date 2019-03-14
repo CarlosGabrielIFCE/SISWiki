@@ -31,7 +31,7 @@ export class LoginPage {
     public sqlite: SQLite,
     public auth: StorageProvider,
     public serviceProv: LocalStorageProvider
-    ) {
+  ) {
   }
 
   startNewDB() {
@@ -42,31 +42,31 @@ export class LoginPage {
     };
     this.perguntas = [];
   }
-  
+
   ionViewDidLoad() {
-    return this.auth.getDB()
-      .then((db: SQLiteObject) => {
-        db.executeSql("SELECT * FROM info WHERE id=?", [1])
-        .then((result) => {
-          if (result.rows.length == 1) {
-            this.usuario = JSON.parse(result.rows.item(0).usuario);
-            console.log(this.usuario);
-            this.perguntas = JSON.parse(result.rows.item(0).perguntas);
-            if (JSON.stringify(this.usuario.logado) && JSON.stringify(this.usuario.logado == 1)) {
-              this.serviceProv.setUsuario(this.usuario);
-              this.serviceProv.setPerguntas(this.perguntas);
-              this.navCtrl.push(HomePage, {
-                usuario: this.usuario,
-              });
-            }
-          }else {
-            this.startNewDB();
-            db.executeSql("INSERT INTO info (id,usuario, perguntas) VALUES (?,?,?)", [1, JSON.stringify(this.usuario), JSON.stringify(this.perguntas)])
-              .then(result => console.log(result))
-              .catch(e => console.log(e));
-          }
-        })
-      })
+    // return this.auth.getDB()
+    //   .then((db: SQLiteObject) => {
+    //     db.executeSql("SELECT * FROM info WHERE id=?", [1])
+    //     .then((result) => {
+    //       if (result.rows.length == 1) {
+    //         this.usuario = JSON.parse(result.rows.item(0).usuario);
+    //         console.log(this.usuario);
+    //         this.perguntas = JSON.parse(result.rows.item(0).perguntas);
+    //         if (JSON.stringify(this.usuario.logado) && JSON.stringify(this.usuario.logado == 1)) {
+    //           this.serviceProv.setUsuario(this.usuario);
+    //           this.serviceProv.setPerguntas(this.perguntas);
+    //           this.navCtrl.push(HomePage, {
+    //             usuario: this.usuario,
+    //           });
+    //         }
+    //       }else {
+    //         this.startNewDB();
+    //         db.executeSql("INSERT INTO info (id,usuario, perguntas) VALUES (?,?,?)", [1, JSON.stringify(this.usuario), JSON.stringify(this.perguntas)])
+    //           .then(result => console.log(result))
+    //           .catch(e => console.log(e));
+    //       }
+    //     })
+    //   })
   }
 
   cadastrarUsuario() {
@@ -80,8 +80,18 @@ export class LoginPage {
       });
       alert.present();
     } else {
-      //this.serviceProv.setUsuario(JSON.stringify(this.usuario));
-      this.navCtrl.push(HomePage);
+      let loading = this.loadingCtrl.create();
+      //loading.present()
+      this.http.get("https://www.sisdedetizadora.com.br/pre/seam/resource/rest/loginWiki/" + this.email + "/" + this.senha)
+        .subscribe((data) => {
+          //loading.dismiss();
+          console.log(data["erro"]["msg"]);
+          if (data["erro"]["msg"] == "Usuário ou token inválidos.") {
+            this.alertCtrl.create({ title: "Aviso", subTitle: "Login ou Senha Inválidos!", buttons: ["OK"] }).present();
+            return this.navCtrl.pop();
+          }
+        })
+        this.navCtrl.push(HomePage);
     }
   }
 
