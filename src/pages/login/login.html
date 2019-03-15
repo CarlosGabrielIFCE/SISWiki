@@ -18,7 +18,7 @@
   <ion-card>
     <ion-list>
       <ion-item style="background-color: #d8d8d8">
-        <ion-input type="text" placeholder="Código de Verificação" [(ngModel)]="senha"></ion-input>
+        <ion-input type="password" placeholder="Código de Verificação" [(ngModel)]="senha"></ion-input>
       </ion-item>
     </ion-list>
   </ion-card>
@@ -35,6 +35,6 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <p style="text-align: center"><button ion-button round color="unipragas2">Perdeu a Senha?</button></p>
+  <p style="text-align: center"><button ion-button round color="unipragas2" (click)="recuperarSenha()">Perdeu a Senha?</button></p>
   <p style="text-align: center" (click)="exitApp()">Encerrar o APP</p>
 </ion-content>

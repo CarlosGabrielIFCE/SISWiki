@@ -1,0 +1,37 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Recuperar Senha</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding style="background: #168D9D">
+  <h2 style="text-align: center; color: white">Recuperar Senha</h2>
+  <ion-card style="color: white">
+    <ion-list inset>
+      <p style="text-align: center">E-mail</p>
+      <ion-card>
+        <ion-item>
+          <ion-input type="text" placeholder="Digite o E-mail" [(ngModel)]="user.email"></ion-input>
+        </ion-item>
+      </ion-card>
+
+      <p style="text-align: center">CPF</p>
+      <ion-card>
+        <ion-item>
+          <ion-input type="text" placeholder="Digite o CPF" [(ngModel)]="user.Cpf" ></ion-input>
+        </ion-item>
+      </ion-card>
+
+      <p style="text-align: center">CNPJ da Empresa</p>
+      <ion-card>
+        <ion-item>
+          <ion-input type="text" placeholder="Digite o CNPJ" [(ngModel)]="user.Cnpj" ></ion-input>
+        </ion-item>
+      </ion-card>
+      <p style="text-align: center"><button ion-button round color="dark" (click)="recuperarSenha()">Salvar</button></p>
+    </ion-list>
+  </ion-card>
+</ion-content>

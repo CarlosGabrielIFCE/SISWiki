@@ -19,6 +19,7 @@ import { AdMobPro } from '@ionic-native/admob-pro';
 import { LocalStorageProvider } from '../providers/local-storage/local-storage';
 import { PipesModule } from '../pipes/pipes.module';
 import { Mask } from '../directives/mask/mask';
+import { RecuperarSenhaPage } from '../pages/recuperar-senha/recuperar-senha';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { Mask } from '../directives/mask/mask';
     LoginPage,
     CadastrarUsuarioPage,
     RespostaSalvaPage,
-    Mask
+    Mask,
+    RecuperarSenhaPage
   ],
   imports: [
     HttpClientModule,
@@ -45,7 +47,8 @@ import { Mask } from '../directives/mask/mask';
     PopoverComponent,
     LoginPage,
     CadastrarUsuarioPage,
-    RespostaSalvaPage
+    RespostaSalvaPage,
+    RecuperarSenhaPage
   ],
   providers: [
     StatusBar,

@@ -8,6 +8,7 @@ import { StorageProvider } from '../../providers/storage/storage';
 import { LocalStorageProvider } from '../../providers/local-storage/local-storage';
 import { HomePage } from '../home/home'
 import { CadastrarUsuarioPage } from '../cadastrar-usuario/cadastrar-usuario';
+import { RecuperarSenhaPage } from '../recuperar-senha/recuperar-senha';
 
 
 @IonicPage()
@@ -41,6 +42,10 @@ export class LoginPage {
       gps: []
     };
     this.perguntas = [];
+  }
+
+  recuperarSenha() {
+    this.navCtrl.push(RecuperarSenhaPage);
   }
 
   ionViewDidLoad() {
@@ -81,17 +86,17 @@ export class LoginPage {
       alert.present();
     } else {
       let loading = this.loadingCtrl.create();
-      //loading.present()
-      this.http.get("https://www.sisdedetizadora.com.br/pre/seam/resource/rest/loginWiki/" + this.email + "/" + this.senha)
+      loading.present()
+      this.http.get("https://www.sisdedetizadora.com.br/seam/resource/rest/loginWiki/" + this.email + "/" + this.senha)
         .subscribe((data) => {
-          //loading.dismiss();
-          console.log(data["erro"]["msg"]);
-          if (data["erro"]["msg"] == "Usuário ou token inválidos.") {
+          loading.dismiss();
+          console.log(data["erro"]);
+          if (data["erro"].cdErro == 102) {
             this.alertCtrl.create({ title: "Aviso", subTitle: "Login ou Senha Inválidos!", buttons: ["OK"] }).present();
-            return this.navCtrl.pop();
+          }else if (data["erro"].cdErro == 0) {
+            this.navCtrl.push(HomePage);
           }
         })
-        this.navCtrl.push(HomePage);
     }
   }
 
