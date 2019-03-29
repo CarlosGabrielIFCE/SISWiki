@@ -47,7 +47,7 @@ export class HomePage {
   deslogar() {
     this.alertCtrl.create({
       title: "Aviso",
-      subTitle: "Deseja realmente sair do SIS Wiki?",
+      subTitle: "Deseja realmente sair do Universidade das Pragas Wiki?",
       buttons: [{
         text: "Não",
         role: "cancel",
@@ -81,7 +81,7 @@ export class HomePage {
     let loading = this.loadingCtrl.create();
     this.perguntasSalvas.push(this.textoBusca);
     loading.present();
-    this.http.post("https://www.sisdedetizadora.com.br/pre/seam/resource/rest/baseConhecimentoMobile/buscarBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
+    this.http.post("https://www.sisdedetizadora.com.br/seam/resource/rest/baseConhecimentoMobile/buscarBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
       .subscribe((data) => {
         if (data["sucesso"].length == 0) {
           this.alertCtrl.create({title: "Aviso", subTitle: "Nenhuma resposta encontrada", buttons: ["OK"]}).present();

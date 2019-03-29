@@ -13,8 +13,6 @@
 <ion-content #popoverContent padding class="popover-page">
   <div #popoverText class="text-to-change">
     <h2>{{pergunta}}</h2>
-    <div class="teste">
-      <div [innerHTML]="resposta | safe:'html'"></div>
-    </div>
+    <div [innerHTML]="resposta | safe:'html'"></div>
   </div>
 </ion-content>

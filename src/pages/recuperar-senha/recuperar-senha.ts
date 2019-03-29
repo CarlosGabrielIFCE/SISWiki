@@ -22,16 +22,16 @@ export class RecuperarSenhaPage {
   }
 
   recuperarSenha() {
-    var post = {
-      "email": this.user.email || "",
-      "cpf": this.user.Cpf || "",
-      "cnpj": this.user.Cnpj || ""
-    }
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.http.get("http://www.sisdedetizadora.com.br/seam/resource/rest/loginWiki/" + this.user.email + "/" + this.user.Cpf + "/" + this.user.Cnpj, { headers: { 'Content-Type': 'application/json' } })
+    this.http.get("https://www.sisdedetizadora.com.br/seam/resource/rest/loginWiki/" + this.user.email + "/" + this.user.Cpf + "/" + this.user.Cnpj, { headers: { 'Content-Type': 'application/json' } })
       .subscribe((data) => {
-        console.log(data["retorno"]);
+        if (data["erro"].cdErro == 103) {
+          this.alertCtrl.create({title: "Aviso", subTitle: data["erro"].msg, buttons: ["OK"]}).present();
+        }else {
+          this.alertCtrl.create({title: "Aviso", subTitle: data["retorno"], buttons: ["OK"]}).present();
+          this.navCtrl.pop();
+        }
       })
     loading.dismiss();
     this.navCtrl.pop();

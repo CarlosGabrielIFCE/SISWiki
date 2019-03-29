@@ -43,13 +43,17 @@ export class CadastrarUsuarioPage {
     }
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.http.post("http://www.sisdedetizadora.com.br/pre/seam/resource/rest/baseConhecimentoMobile/cadastrarUsoBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
+    this.http.post("http://www.sisdedetizadora.com.br/seam/resource/rest/baseConhecimentoMobile/cadastrarUsoBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
       .subscribe((data) => {
-        console.log(data["retorno"]);
-        this.alertCtrl.create({title: "Aviso", subTitle: data["retorno"], buttons: ["OK"]}).present();
+        console.log(data);
+        if (data["cdErro"] == 0 || data["cdErro"] == 2 || data["cdErro"] == 4) {
+          this.alertCtrl.create({title: "Aviso", subTitle: data["retorno"], buttons: ["OK"]}).present();
+          this.navCtrl.pop();
+        }else if (data["cdErro"] == 1 || data["cdErro"] == 3){
+          this.alertCtrl.create({title: "Aviso", subTitle: data["retorno"], buttons: ["OK"]}).present();
+        }
       })
     loading.dismiss();
-    this.navCtrl.pop();
   }
 
 }

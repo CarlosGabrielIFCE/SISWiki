@@ -27,7 +27,7 @@ export class ResultadoDetailPage {
     }
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.http.post("http://sisdedetizadora.com.br/pre/seam/resource/rest/baseConhecimentoMobile/abrirConteudoBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
+    this.http.post("http://sisdedetizadora.com.br/seam/resource/rest/baseConhecimentoMobile/abrirConteudoBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
       .subscribe((data) => {
         this.resposta = data["resposta"];
         this.pergunta = data["pergunta"];
