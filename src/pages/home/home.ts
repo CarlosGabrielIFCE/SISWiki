@@ -4,11 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { ResultadoDetailPage } from '../resultado-detail/resultado-detail';
 import { StorageProvider } from '../../providers/storage/storage';
 import { LocalStorageProvider } from '../../providers/local-storage/local-storage';
-import { AdMobPro } from '@ionic-native/admob-pro';
+import { AdMobProvider } from '../../providers/ad-mob/ad-mob';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html'
+  templateUrl: 'home.html',
+  providers: [AdMobProvider]
 })
 export class HomePage {
   perguntas: any = [];
@@ -18,7 +19,7 @@ export class HomePage {
   constructor(public navCtrl: NavController,
     public http: HttpClient,
     public storage: StorageProvider,
-    public admob: AdMobPro,
+    public admob: AdMobProvider,
     public alertCtrl: AlertController,
     public localStorage: LocalStorageProvider,
     public platform: Platform,
@@ -28,19 +29,7 @@ export class HomePage {
         banner: 'ca-app-pub-5400954463123622/6642702650',
         interstitial: 'ca-app-pub-5400954463123622/1154749866'
       };
-
-      this.admob.createBanner({
-        //adId: admobid.banner,
-        isTesting: true,
-        autoShow: true,
-        position: this.admob.AD_POSITION.BOTTOM_CENTER
-      })
-
-      this.admob.prepareInterstitial({
-        //adId: admobid.interstitial,
-        isTesting: true,
-        autoShow: false
-      })
+      this.admob.showBanner();
     })
   }
 
@@ -62,12 +51,6 @@ export class HomePage {
         }
       }]
     }).present();
-  }
-
-  showInterstitialAd() {
-    if (AdMobPro) {
-      this.admob.showInterstitial();
-    }
   }
 
   buscarWiki() {
@@ -102,7 +85,14 @@ export class HomePage {
   }
 
   openAnswer(index) {
-    this.admob.showInterstitial();
+    if (this.cont%3 == 0) {
+      this.admob.showInterstitial();
+      this.cont++;
+      console.log(this.cont);
+    }else {
+      this.cont++;
+      console.log(this.cont);
+    }
     this.navCtrl.push(ResultadoDetailPage, {
       codigo: this.perguntas[index].codigo
     })
@@ -114,7 +104,7 @@ export class HomePage {
     }
     let loading = this.loadingCtrl.create();
     loading.present();
-    this.http.post("https://www.sisdedetizadora.com.br/pre/seam/resource/rest/baseConhecimentoMobile/buscarBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
+    this.http.post("https://www.sisdedetizadora.com.br/seam/resource/rest/baseConhecimentoMobile/buscarBase", JSON.stringify(post), { headers: { 'Content-Type': 'application/json' } })
       .subscribe((data) => {
         if (data["sucesso"].length == 0) {
           this.alertCtrl.create({title: "Aviso", subTitle: "Nenhuma resposta encontrada", buttons: ["OK"]}).present();

@@ -20,6 +20,7 @@ import { LocalStorageProvider } from '../providers/local-storage/local-storage';
 import { PipesModule } from '../pipes/pipes.module';
 import { Mask } from '../directives/mask/mask';
 import { RecuperarSenhaPage } from '../pages/recuperar-senha/recuperar-senha';
+import { AdMobProvider } from '../providers/ad-mob/ad-mob';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { RecuperarSenhaPage } from '../pages/recuperar-senha/recuperar-senha';
     StorageProvider,
     AdMobPro,
     SQLite,
-    LocalStorageProvider
+    LocalStorageProvider,
+    AdMobProvider
   ]
 })
 export class AppModule {}
