@@ -26,10 +26,9 @@ export class RecuperarSenhaPage {
     loading.present();
     this.http.get("https://www.sisdedetizadora.com.br/seam/resource/rest/loginWiki/" + this.user.email + "/" + this.user.Cpf + "/" + this.user.Cnpj, { headers: { 'Content-Type': 'application/json' } })
       .subscribe((data) => {
-        if (data["erro"].cdErro == 103) {
-          this.alertCtrl.create({title: "Aviso", subTitle: data["erro"].msg, buttons: ["OK"]}).present();
-        }else {
-          this.alertCtrl.create({title: "Aviso", subTitle: data["retorno"], buttons: ["OK"]}).present();
+        console.log(data);
+        this.alertCtrl.create({title: "Aviso", subTitle: data["retorno"].msg, buttons: ["OK"]}).present();
+        if (data["retorno"].cdErro = 0) {
           this.navCtrl.pop();
         }
       })

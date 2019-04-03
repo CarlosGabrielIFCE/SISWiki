@@ -60,8 +60,8 @@ export class AdMobProvider {
    	
 
    	this._opt = {
-		// bannerId: admobid.banner,
-		// interstitialId: admobid.interstitial,
+		 bannerId: this._admobid.banner,
+		 interstitialId: this._admobid.interstitial,
 		// adSize: 'SMART_BANNER',
 		// width: integer, // valid when set adSize 'CUSTOM'
 		// height: integer, // valid when set adSize 'CUSTOM'
@@ -70,7 +70,7 @@ export class AdMobProvider {
 		bgColor: 'black', // color name, or '#RRGGBB'
 		// x: integer,     // valid when set position to 0 / POS_XY
 		// y: integer,     // valid when set position to 0 / POS_XY
-		isTesting: true, // set to true, to receiving test ad for testing purpose
+		//isTesting: true, // set to true, to receiving test ad for testing purpose
 		// autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
    	};
 
