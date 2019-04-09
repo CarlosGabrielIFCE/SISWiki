@@ -11,8 +11,9 @@
 
 <ion-content padding >
   <div style="text-align: center">
-    <img src="assets/imgs/logo_universidadedaspragas.png" />
+    <a href="http://siscontroladoras.com.br/"><img src="assets/imgs/banner.jpg" /></a>
     <p>Em parceria com <i>SIS Controladoras</i></p>
+    <img src="assets/imgs/logo_universidadedaspragas.png" />
     <p>Desenvolvido por <i>SUCH a Software</i></p>
   </div>
   <h2 style="text-align: center">
@@ -20,11 +21,11 @@
   </h2>
   <ion-searchbar placeholder="Digite aqui sua pesquisa" [(ngModel)]="textoBusca"></ion-searchbar>
   <div style="text-align: center">
-    <button ion-button round color="unipragas2" (click)="buscarWiki()">Buscar</button>
+    <button ion-button round color="unipragas" (click)="buscarWiki()">Buscar</button>
   </div>
 
   <ion-card *ngFor="let pergunta of perguntas;let i = index" (click)="openAnswer(i)">
-    <ion-card-header style="background-color: #d8d8d8">
+    <ion-card-header style="background-color: #efefef">
       {{ pergunta.pergunta }}
     </ion-card-header>
   </ion-card>
@@ -32,7 +33,7 @@
   <h2 style="text-align: center">Histórico</h2>
   <ion-card *ngFor="let pergunta of perguntasSalvas;let i = index" (click)="refazerBusca(i)">
     <div style="text-align: center">
-      <ion-card-header style="background-color: #d8d8d8">
+      <ion-card-header style="background-color: #efefef">
         {{ pergunta }}
       </ion-card-header>
     </div>
