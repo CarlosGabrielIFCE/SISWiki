@@ -36,7 +36,7 @@ export class HomePage {
   deslogar() {
     this.alertCtrl.create({
       title: "Aviso",
-      subTitle: "Deseja realmente sair do Universidade das Pragas Wiki?",
+      subTitle: "Deseja realmente sair do Universidade das Pragas Wiki? Você terá de fazer o Login Novamente!",
       buttons: [{
         text: "Não",
         role: "cancel",
@@ -47,6 +47,7 @@ export class HomePage {
         text: "Sim",
         role: "destructive",
         handler: () => {
+          this.storage.Deslogar();
           this.platform.exitApp();
         }
       }]

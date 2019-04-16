@@ -19,14 +19,12 @@ export class StorageProvider {
     return this.getDB()
       .then((db: SQLiteObject) => {
         this.createTables(db);
-
-        //this.insertDefaultItems(db);
       })
       .catch(e => console.log(e));
   }
 
   private createTables(db: SQLiteObject) {
-    db.sqlBatch(["CREATE TABLE IF NOT EXISTS info (id INTEGER, usuario TEXT, perguntas TEXT)"])
+    db.sqlBatch(["CREATE TABLE IF NOT EXISTS info (id INTEGER, usuario TEXT)"])
       .then(() => console.log("Table created"))
       .catch(e => console.error("Error on creating the tables: ", e));
   }
@@ -42,15 +40,7 @@ export class StorageProvider {
   Deslogar() {
     return this.getDB()
       .then((db: SQLiteObject) => {
-        return db.executeSql("UPDATE info SET  usuario = ?, perguntas = ? WHERE id=?", ["{}", "[]", 1])
-          .catch((e) => console.log(e));
-      })
-  }
-
-  SetPerguntasAtivas(value) {
-    return this.getDB()
-      .then((db: SQLiteObject) => {
-        return db.executeSql("UPDATE info SET perguntas = ?  WHERE id = ? ", [value, 1])
+        return db.executeSql("UPDATE info SET  usuario = ? WHERE id=?", ["{}", 1])
           .catch((e) => console.log(e));
       })
   }

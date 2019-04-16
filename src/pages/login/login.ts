@@ -31,7 +31,8 @@ export class LoginPage {
     public http: HttpClient,
     public sqlite: SQLite,
     public auth: StorageProvider,
-    public serviceProv: LocalStorageProvider
+    public serviceProv: LocalStorageProvider,
+    public storage: StorageProvider
   ) {
   }
 
@@ -39,9 +40,7 @@ export class LoginPage {
     this.usuario = {
       email: "",
       logado: 0,
-      gps: []
     };
-    this.perguntas = [];
   }
 
   recuperarSenha() {
@@ -49,29 +48,27 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    // return this.auth.getDB()
-    //   .then((db: SQLiteObject) => {
-    //     db.executeSql("SELECT * FROM info WHERE id=?", [1])
-    //     .then((result) => {
-    //       if (result.rows.length == 1) {
-    //         this.usuario = JSON.parse(result.rows.item(0).usuario);
-    //         console.log(this.usuario);
-    //         this.perguntas = JSON.parse(result.rows.item(0).perguntas);
-    //         if (JSON.stringify(this.usuario.logado) && JSON.stringify(this.usuario.logado == 1)) {
-    //           this.serviceProv.setUsuario(this.usuario);
-    //           this.serviceProv.setPerguntas(this.perguntas);
-    //           this.navCtrl.push(HomePage, {
-    //             usuario: this.usuario,
-    //           });
-    //         }
-    //       }else {
-    //         this.startNewDB();
-    //         db.executeSql("INSERT INTO info (id,usuario, perguntas) VALUES (?,?,?)", [1, JSON.stringify(this.usuario), JSON.stringify(this.perguntas)])
-    //           .then(result => console.log(result))
-    //           .catch(e => console.log(e));
-    //       }
-    //     })
-    //   })
+     return this.auth.getDB()
+       .then((db: SQLiteObject) => {
+         db.executeSql("SELECT * FROM info WHERE id=?", [1])
+         .then((result) => {
+           if (result.rows.length == 1) {
+             this.usuario = JSON.parse(result.rows.item(0).usuario);
+             console.log(this.usuario);
+             if (JSON.stringify(this.usuario.logado) && JSON.stringify(this.usuario.logado == 1)) {
+               this.serviceProv.setUsuario(this.usuario);
+               this.navCtrl.push(HomePage, {
+                 usuario: this.usuario,
+               });
+             }
+           }else {
+             this.startNewDB();
+             db.executeSql("INSERT INTO info (id, usuario) VALUES (?,?)", [1, JSON.stringify(this.usuario)])
+               .then(result => console.log(result))
+               .catch(e => console.log(e));
+           }
+         })
+       })
   }
 
   cadastrarUsuario() {
@@ -94,6 +91,12 @@ export class LoginPage {
           if (data["erro"].cdErro == 102) {
             this.alertCtrl.create({ title: "Aviso", subTitle: "Login ou Senha Inválidos!", buttons: ["OK"] }).present();
           }else if (data["erro"].cdErro == 0) {
+            let usuario = {
+              email: this.email,
+              senha: this.senha,
+              logado: 1
+            }
+            this.storage.SetEmpregado(JSON.stringify(usuario));
             this.navCtrl.push(HomePage);
           }
         })

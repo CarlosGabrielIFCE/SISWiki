@@ -28,42 +28,42 @@
       <p style="text-align: center">DDD Fixo</p>
       <ion-card>
         <ion-item>
-          <ion-input type="text" placeholder="Digite o DDD Fixo" [(ngModel)]="user.dddFixo"></ion-input>
+          <ion-input type="number" placeholder="Digite o DDD Fixo" [(ngModel)]="user.dddFixo" max="2"></ion-input>
         </ion-item>
       </ion-card>
 
       <p style="text-align: center">Telefone Fixo</p>
       <ion-card>
         <ion-item>
-          <ion-input type="text" placeholder="Digite o Telefone Fixo" [(ngModel)]="user.telefoneFixo"></ion-input>
+          <ion-input type="number" placeholder="Digite o Telefone Fixo" [(ngModel)]="user.telefoneFixo" max="8"></ion-input>
         </ion-item>
       </ion-card>
 
       <p style="text-align: center">DDD Celular</p>
       <ion-card>
         <ion-item>
-          <ion-input type="text" placeholder="Digite o DDD Celular" [(ngModel)]="user.dddCelular"></ion-input>
+          <ion-input type="number" placeholder="Digite o DDD Celular" [(ngModel)]="user.dddCelular" max="2"></ion-input>
         </ion-item>
       </ion-card>
 
       <p style="text-align: center">Telefone Celular</p>
       <ion-card>
         <ion-item>
-          <ion-input type="text" placeholder="Digite o Telefone Celular" [(ngModel)]="user.telefoneCelular"></ion-input>
+          <ion-input type="number" placeholder="Digite o Telefone Celular" [(ngModel)]="user.telefoneCelular" max="9"></ion-input>
         </ion-item>
       </ion-card>
 
       <p style="text-align: center">CPF</p>
       <ion-card>
         <ion-item>
-          <ion-input type="text" placeholder="Digite o CPF" [(ngModel)]="user.Cpf" ></ion-input>
+          <ion-input type="number" placeholder="Digite o CPF(Somente Números)" [(ngModel)]="user.Cpf"></ion-input>
         </ion-item>
       </ion-card>
 
       <p style="text-align: center">CNPJ da Empresa</p>
       <ion-card>
         <ion-item>
-          <ion-input type="text" placeholder="Digite o CNPJ" [(ngModel)]="user.Cnpj" ></ion-input>
+          <ion-input type="number" placeholder="Digite o CNPJ(Somente números)" [(ngModel)]="user.Cnpj" ></ion-input>
         </ion-item>
       </ion-card>
       <p style="text-align: center"><button ion-button round color="dark" (click)="salvarNovoUsuario()">Salvar</button></p>
